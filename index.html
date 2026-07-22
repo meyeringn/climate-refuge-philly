@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b4f6c">
+  <meta name="description" content="Find accessible places in Philadelphia to cool down, breathe cleaner air, charge medical equipment, and stay safe during climate emergencies.">
+  <title>Climate Refuge Philly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=IBM+Plex+Mono:wght@500;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3kMJZrDVp9B2HOxZ0VRiP8WrQ2B0I=" crossorigin="">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to refuge finder</a>
+
+  <header class="site-header">
+    <div class="utility-strip" aria-label="Site status">
+      <span><strong>Prototype:</strong> sample locations only</span>
+      <button id="contrastToggle" class="text-button" type="button" aria-pressed="false">High contrast</button>
+    </div>
+
+    <div class="brand-row wrap">
+      <a class="brand" href="#top" aria-label="Climate Refuge Philly home">
+        <span class="bell-mark" aria-hidden="true">CR</span>
+        <span>
+          <strong>Climate Refuge</strong>
+          <small>PHILLY</small>
+        </span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#finder">Find a refuge</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#about">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero">
+      <div class="hero-skyline" aria-hidden="true">
+        <svg viewBox="0 0 1600 430" role="img" aria-label="Illustrated Philadelphia skyline with City Hall, rowhomes, the Ben Franklin Bridge, a trolley, and trees">
+          <defs>
+            <pattern id="brick" width="16" height="10" patternUnits="userSpaceOnUse">
+              <path d="M0 0H16M0 10H16M8 0V5M0 5H16M4 5V10M12 5V10" fill="none" stroke="currentColor" stroke-width="1" opacity=".16"/>
+            </pattern>
+          </defs>
+          <g class="skyline-back">
+            <path d="M0 330H1600V430H0z"/>
+            <path d="M35 330v-72h54v72m14 0v-96h62v96m16 0v-58h52v58m24 0v-108h66v108m20 0v-74h48v74m26 0v-132h74v132m22 0v-90h54v90m24 0v-56h58v56m28 0v-120h64v120m24 0v-84h52v84m26 0v-146h70v146m24 0v-62h58v62m28 0v-98h58v98m26 0v-72h52v72m28 0v-118h64v118m24 0v-80h72v80"/>
+          </g>
+          <g class="city-hall">
+            <path d="M690 330V198h28v-42h24v-36h24v36h24v42h28v132z"/>
+            <path d="M742 120V74h12v46z"/>
+            <circle cx="748" cy="66" r="8"/>
+          </g>
+          <g class="bridge">
+            <path d="M1110 318V190M1450 318V190M1110 210h340M1110 216c90-130 250-130 340 0" fill="none" stroke="currentColor" stroke-width="9"/>
+            <path d="M1140 218v100m40-126v126m40-151v151m40-162v162m40-151v151m40-126v126m40-100v100" fill="none" stroke="currentColor" stroke-width="3"/>
+          </g>
+          <g class="rowhomes">
+            <path d="M90 330v-92h86v92m0 0v-116h92v116m0 0v-82h86v82m0 0v-104h94v104" fill="url(#brick)" stroke="currentColor" stroke-width="5"/>
+            <path d="M115 330v-48h24v48m64 0v-50h25v50m66 0v-44h24v44m66 0v-52h26v52" fill="none" stroke="currentColor" stroke-width="4"/>
+          </g>
+          <g class="trolley">
+            <rect x="500" y="288" width="150" height="58" rx="9"/>
+            <path d="M530 288l30-28h36l28 28M544 260h36" fill="none" stroke="currentColor" stroke-width="5"/>
+            <rect x="518" y="301" width="35" height="22" rx="3"/>
+            <rect x="560" y="301" width="35" height="22" rx="3"/>
+            <rect x="602" y="301" width="30" height="22" rx="3"/>
+            <circle cx="535" cy="347" r="11"/><circle cx="615" cy="347" r="11"/>
+          </g>
+          <g class="trees">
+            <circle cx="40" cy="302" r="28"/><rect x="36" y="310" width="8" height="32"/>
+            <circle cx="1545" cy="296" r="38"/><rect x="1540" y="310" width="10" height="36"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="wrap hero-content">
+        <p class="eyebrow">Heat, smoke, outages, and severe weather</p>
+        <h1>Find a safer place in Philly.</h1>
+        <p class="hero-copy">Search for accessible places to cool down, breathe cleaner air, sit, drink water, use a restroom, or charge essential equipment.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#finder">Find a climate refuge</a>
+          <button class="button secondary" id="useLocation" type="button">Use my location</button>
+        </div>
+        <p class="trust-note"><span aria-hidden="true">●</span> Accessibility details show what is confirmed, reported, or still unknown.</p>
+      </div>
+    </section>
+
+    <section class="alert-band" aria-label="Safety note">
+      <div class="wrap alert-grid">
+        <strong>In immediate danger?</strong>
+        <span>Call 911. This prototype does not replace emergency services or official City alerts.</span>
+      </div>
+    </section>
+
+    <section id="finder" class="finder-section wrap">
+      <div class="section-heading">
+        <p class="eyebrow">Refuge finder</p>
+        <h2>What do you need today?</h2>
+        <p>Choose only the features that matter to you. Unknown information will stay visible instead of being treated as a “no.”</p>
+      </div>
+
+      <div class="finder-layout">
+        <aside class="filter-panel" aria-label="Refuge filters">
+          <div class="field-group">
+            <label for="searchInput">Neighborhood, ZIP code, or place</label>
+            <input id="searchInput" type="search" placeholder="Try 19147 or West Philly" autocomplete="postal-code">
+          </div>
+
+          <fieldset>
+            <legend>Accessibility and comfort</legend>
+            <label class="check-row"><input type="checkbox" value="stepFree"> <span>Step-free entrance</span></label>
+            <label class="check-row"><input type="checkbox" value="restroom"> <span>Accessible restroom</span></label>
+            <label class="check-row"><input type="checkbox" value="seating"> <span>Indoor seating</span></label>
+            <label class="check-row"><input type="checkbox" value="quiet"> <span>Quieter space</span></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Climate refuge features</legend>
+            <label class="check-row"><input type="checkbox" value="airConditioning"> <span>Air conditioning</span></label>
+            <label class="check-row"><input type="checkbox" value="cleanAir"> <span>Enhanced air filtration</span></label>
+            <label class="check-row"><input type="checkbox" value="water"> <span>Drinking water</span></label>
+            <label class="check-row"><input type="checkbox" value="power"> <span>Power outlets</span></label>
+          </fieldset>
+
+          <div class="field-group">
+            <label for="distanceSelect">Maximum travel distance</label>
+            <select id="distanceSelect">
+              <option value="2">2 miles</option>
+              <option value="5" selected>5 miles</option>
+              <option value="10">10 miles</option>
+              <option value="99">Show all</option>
+            </select>
+          </div>
+
+          <button id="clearFilters" class="button secondary full" type="button">Clear filters</button>
+        </aside>
+
+        <div class="results-panel">
+          <div class="results-toolbar">
+            <p id="resultCount" aria-live="polite">Showing 0 locations</p>
+            <div class="view-switch" role="group" aria-label="Results view">
+              <button class="active" data-view="list" type="button" aria-pressed="true">List</button>
+              <button data-view="map" type="button" aria-pressed="false">Map</button>
+            </div>
+          </div>
+
+          <div id="listView" class="refuge-list" aria-live="polite"></div>
+          <div id="mapView" class="map-shell" hidden>
+            <div id="map" aria-label="Map of sample climate refuge locations in Philadelphia"></div>
+            <p class="map-note">Map tiles © OpenStreetMap contributors. Locations are demonstration data.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="how-section">
+      <div class="wrap">
+        <div class="section-heading compact">
+          <p class="eyebrow">Built for trust</p>
+          <h2>No mystery scores. No fake certainty.</h2>
+        </div>
+        <div class="principle-grid">
+          <article><span class="big-number">01</span><h3>Verified details</h3><p>We separate official information from community reports and unknowns.</p></article>
+          <article><span class="big-number">02</span><h3>Your priorities</h3><p>A refuge is only useful when it works for your body, equipment, and travel needs.</p></article>
+          <article><span class="big-number">03</span><h3>Philadelphia first</h3><p>Neighborhood context, SEPTA access, and local climate risks shape every recommendation.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about-section wrap">
+      <div>
+        <p class="eyebrow">About the project</p>
+        <h2>A civic tool for a hotter, less predictable city.</h2>
+      </div>
+      <div>
+        <p>Climate Refuge Philly is an independent prototype designed at the intersection of disability access, public transit, and climate resilience.</p>
+        <p>The next version will replace demonstration locations with verified Philadelphia data and add a clear correction process.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div><strong>Climate Refuge Philly</strong><p>Independent civic technology prototype.</p></div>
+      <p>Made with care for disabled Philadelphians, neighbors, caregivers, and anyone trying to stay safe.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="config.js"></script>
+  <script src="locations.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
