@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">Climate Refuge Philly icon</title>
+  <rect width="64" height="64" rx="12" fill="#0b4f6c"/>
+  <path d="M32 9c-8 8-13 15-13 24 0 8 6 15 13 15s13-7 13-15c0-9-5-16-13-24Z" fill="#f2c14e"/>
+  <path d="M18 48h28v7H18z" fill="#f6f0df"/>
+  <path d="M25 38h14v10H25z" fill="#f6f0df"/>
+  <circle cx="32" cy="31" r="5" fill="#0b4f6c"/>
+</svg>
