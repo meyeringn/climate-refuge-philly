@@ -16,7 +16,7 @@ Three design commitments set this apart:
 
 - **Disability-first framing.** Accessibility isn't a filter bolted on after the map works. Step-free entrances, accessible restrooms, indoor seating, quieter spaces, and power for medical equipment are first-class features, not afterthoughts.
 - **Data honesty.** Every feature on every location gets one of three statuses: `confirmed`, `reported`, or `unknown`. Missing information stays visible as "unknown" rather than being hidden or treated as a "no." The data guide explains the verification standard.
-- **No backend, no login, no tracking.** The tool runs entirely client-side on vanilla HTML, CSS, and JavaScript. It loads fast on old phones over slow connections. It costs nothing to host. And anyone can open a file and see exactly how it works.
+- **No backend, no login, no cookies.** Page visits are counted anonymously with GoatCounter. The tool runs entirely client-side on vanilla HTML, CSS, and JavaScript. It loads fast on old phones over slow connections. It costs nothing to host. And anyone can open a file and see exactly how it works.
 
 ## Current prototype includes
 
@@ -78,7 +78,7 @@ Not yet real -- this is where verified data (city cooling center lists, PWD wate
 
 ## Tech stack
 
-Vanilla HTML/CSS/JS, no build step. Leaflet + OpenStreetMap for the optional map view. No backend, no tracking, no login -- runs entirely client-side so it can live for free on GitHub Pages.
+Vanilla HTML/CSS/JS, no build step. Leaflet + OpenStreetMap for the optional map view. No backend, no login, no cookies (anonymous visit counts only) -- runs entirely client-side so it can live for free on GitHub Pages.
 
 ## How to contribute
 
