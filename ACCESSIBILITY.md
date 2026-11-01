@@ -19,7 +19,7 @@ Automated tools catch only some barriers. Until the manual review is done, pleas
 
 ## Fixed in November 2026
 
-The first automated scan found issues that are now fixed: labeling for the site status strip, and the home link's spoken name, which now include the words you see on screen.
+The first automated scan found issues that are now fixed: labeling for the site status strip and the home link's spoken name (now matching the words you see on screen).
 
 ## Known issues
 
