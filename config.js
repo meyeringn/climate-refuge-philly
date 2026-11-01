@@ -96,6 +96,7 @@ window.CRF_CONFIG = {
       footerTitle: "Climate Refuge Philly",
       footerSubtitle: "Independent civic technology prototype.",
       footerNote: "Made with care for Disabled Philadelphians, neighbors, caregivers, and anyone trying to stay safe.",
+      dataVerified: "Data last verified: November 2026",
 
       cardTransit: "Nearby transit:",
       cardReport: "Report an update",
@@ -198,6 +199,7 @@ window.CRF_CONFIG = {
       footerTitle: "Climate Refuge Philly",
       footerSubtitle: "Prototipo de tecnolog\u00eda c\u00edvica independiente.",
       footerNote: "Hecho con cuidado para personas discapacitadas de Filadelfia, vecinos, cuidadores y cualquiera que intente mantenerse a salvo.",
+      dataVerified: "Datos verificados por última vez: noviembre de 2026",
 
       cardTransit: "Transporte cercano:",
       cardReport: "Reportar una actualizaci\u00f3n",
@@ -225,4 +227,4 @@ window.CRF_CONFIG = {
       featureWater: "Agua potable",
       featurePower: "Tomas de corriente"
     }
-  }
+  }};

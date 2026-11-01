@@ -2,6 +2,8 @@
 
 When it's 98 degrees on the Broad Street Line platform and you can't remember the last time you drank water, you don't need a dashboard -- you need a place to go. Climate Refuge Philly is a mobile-first tool that helps you find somewhere nearby to cool down, catch a breath of cleaner air, sit for a minute, refill a water bottle, use an accessible restroom, or plug in a wheelchair, CPAP, or phone when it matters most.
 
+**Data last verified:** November 2026
+
 Philadelphia is the case study. The model is designed for any city.
 
 This is a prototype -- a working sketch of what the real thing could be, built to get feedback before it becomes something people in Kensington, Hunting Park, or Southwest Philly actually rely on during a heat emergency.
